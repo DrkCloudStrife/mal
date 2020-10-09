@@ -6,7 +6,7 @@ std::string PRINT(const std::string& msg);
 std::string rep(const std::string& input);
 bool getUserPrompt(const std::string& prompt, std::string& input);
 
-int main(int argi, char* argc[])
+int main(int argc, char* argv[])
 {
     std::string userMessage = "user> ";
     std::string input;

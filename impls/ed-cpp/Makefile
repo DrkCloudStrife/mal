@@ -6,6 +6,9 @@ AR=ar
 DEBUG=-ggdb
 CXXFLAGS=-O3 -Wall $(DEBUG) -std=c++11
 
+LIBSOURCES=Reader.cpp
+LIBOBJS=$(LIBSOURCES:%.cpp=%.o)
+
 MAINS=$(wildcard step*.cpp)
 TARGETS=$(MAINS:%.cpp=%)
 
@@ -23,8 +26,11 @@ mal: stepA_mal
 .deps: *.cpp *.h
 	$(CXX) $(CXXFLAGS) -MM *.cpp > .deps
 
-$(TARGETS): %: %.o
+$(TARGETS): %: %.o libmal.a
 	$(LD) $^ -o $@
+
+libmal.a: $(LIBOBJS)
+	$(AR) rcs $@ $^
 
 .cpp.o:
 	$(CXX) $(CXXFLAGS) -c $< -o $@
