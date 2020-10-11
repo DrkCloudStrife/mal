@@ -36,12 +36,7 @@ bool getUserPrompt(const String& prompt, String& input)
 
 String READ(const String& input)
 {
-    // Testing Reader
-    Reader myReader(input);
-    myReader.next();
-    myReader.peek();
-
-    return input;
+    return readStr(input);
 }
 
 String EVAL(const String& input)
