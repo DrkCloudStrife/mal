@@ -38,19 +38,13 @@ MalList tokenize(const String& input)
 {
     MalList tokens;
 
-    if (std::regex_match(input, PCRE))
+    for (std::sregex_iterator it = std::sregex_iterator(input.begin(), input.end(), PCRE);
+        it != std::sregex_iterator(); it++)
     {
-        std::cout << "Regex matched" << std::endl;
-        std::smatch inputMatches;
-        std::regex_match(input, inputMatches, PCRE);
-        // std::cout << inputMatches.str() << std::endl;
-        for (unsigned i = 0; i < inputMatches.size(); i++)
-        {
-            tokens.assign(i, inputMatches[i]);
-        }
-    } else {
-        std::cout << "no match, assign whole input" << std::endl;
-        tokens.assign(1, input);
+        std::smatch m;
+        m = *it;
+        String sm = m.str(1);
+        tokens.push_back(sm);
     }
 
     return tokens;
@@ -66,6 +60,7 @@ String readStr(const String& input)
 
 String readForm(Reader& reader)
 {
+    std::cout << reader.next() << std::endl;
     std::cout << reader.peek() << std::endl;
     return "";
 }
