@@ -55,12 +55,33 @@ String readStr(const String& input)
 {
     MalList tokens = tokenize(input);
     Reader myReader(tokens);
-    return readForm(myReader);
+    readForm(myReader);
+
+    return input;
 }
 
-String readForm(Reader& reader)
+// readForm (function) - Peeks first token in Reader and switch on the first character of the token
+// TODO: Create a tuple that returns different MalTypes
+void readForm(Reader& reader)
 {
-    std::cout << reader.next() << std::endl;
-    std::cout << reader.peek() << std::endl;
-    return "";
+    String token = reader.peek();
+    std::cout << token << std::endl;
+    if (token == "(") {
+        reader.next();
+        return readList(reader);
+    }
+
+    readAtom(reader);
+}
+
+// readList (function) - Repeately calls `readForm` until ')' token is found
+void readList(Reader& reader)
+{
+    String token = reader.peek();
+    MalList tokens;
+    while(token != ")") {
+        std::cout << token << std::endl;
+        readForm(reader);
+        tokens.push_back(token);
+    }
 }
