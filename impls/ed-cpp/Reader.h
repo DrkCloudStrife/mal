@@ -2,11 +2,7 @@
 #define INC_READER_H
 
 #include <iostream>
-#include <vector>
-
-typedef std::string          String;
-typedef std::vector<String>  MalList;
-typedef std::vector<MalList> MalArray;
+#include "Types.h"
 
 class Reader {
 public:

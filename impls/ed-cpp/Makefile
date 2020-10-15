@@ -6,7 +6,7 @@ AR=ar
 DEBUG=-ggdb
 CXXFLAGS=-O3 -Wall $(DEBUG) -std=c++11
 
-LIBSOURCES=Reader.cpp
+LIBSOURCES=Types.cpp Reader.cpp
 LIBOBJS=$(LIBSOURCES:%.cpp=%.o)
 
 MAINS=$(wildcard step*.cpp)
