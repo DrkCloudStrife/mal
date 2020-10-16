@@ -1,7 +1,8 @@
 require_relative "reader"
+require_relative "printer"
 
 def READ(input)
-  input
+  read_str(input)
 end
 
 def EVAL(input)
@@ -9,7 +10,7 @@ def EVAL(input)
 end
 
 def PRINT(input)
-  input
+  pr_str(input)
 end
 
 def rep(input)
